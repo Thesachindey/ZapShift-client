@@ -28,10 +28,10 @@ const Support = () => {
 
 
     return (
-        <div className='flex flex-col gap-10 px-9 py-12'>
+        <div className='flex flex-col gap-10 md:px-9  py-12'>
             {
                 data.map((item, index) =>
-                    <div key={index} className="w-full bg-base-100 shadow-md rounded-2xl p-8 flex items-center gap-8">
+                    <div key={index} className="w-full  bg-base-100 shadow-md rounded-2xl p-8 flex flex-col md:flex-row items-center  gap-8">
 
                         {/* Left Illustration */}
                         <div className="w-30 flex justify-center">
@@ -43,7 +43,7 @@ const Support = () => {
                         </div>
 
                         {/* Vertical Dashed Divider */}
-                        <div className="h-40 border-l-2 border-dashed border-neutral/40"></div>
+                        <div className="md:h-40 md:border-l-2 border-dashed border-neutral/40"></div>
 
                         {/* Text Content */}
                         <div className="w-2/3 space-y-2">

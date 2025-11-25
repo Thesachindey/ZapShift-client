@@ -15,7 +15,7 @@ const HowItWorks = () => {
     return (
         <div className='px-9 py-12'>
             <h1 className='text-2xl text-secondary font-bold mb-6'>How It Works</h1>
-            <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 '>
+            <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6 '>
             {/* card */}
             {
                 data.map(item => 

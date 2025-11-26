@@ -5,6 +5,8 @@ import Services from '../OurServices/Services';
 import Brands from '../Brand/Brands';
 import Support from '../Support/Support';
 import Reviews from '../Reviews/Reviews';
+import FAQ from '../FAQ/FAQ';
+import BeMerchant from '../BecomeMerchant/BeMerchant';
 
 const Home = () => {
     const reviewsPromise = fetch('/reviews.json').then(res => res.json());
@@ -16,16 +18,26 @@ const Home = () => {
                 <HowItWorks />
                 <Services />
                 <Brands />
-                {/*divider */}
-                <div className="border-t-2 border-dashed border-secondary/40 mb-15"></div>
+                <div className="px-9">
+                    {/*divider */}
+                    <div className="border-t-2 border-dashed border-secondary/40 mb-15"></div>
+                </div>
 
                 <Support />
 
-                {/*divider */}
-                <div className="border-t-2 border-dashed border-secondary/40 mt-15"></div>
+                <div className="px-9">
+                    {/*divider */}
+                    <div className="border-t-2 border-dashed border-secondary/40 my-15"></div>
+                </div>
+
+                <BeMerchant />
+
                 <Suspense fallback={<div>Loading reviews...</div>}>
                     <Reviews reviewsPromise={reviewsPromise} />
                 </Suspense>
+
+                <FAQ />
+
             </header>
         </div>
     );

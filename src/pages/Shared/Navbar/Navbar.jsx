@@ -1,13 +1,14 @@
 import React from 'react';
 import Logo from '../../../components/Logo/Logo';
-import { NavLink } from 'react-router';
+import { Link, NavLink } from 'react-router';
+import { FaArrowUp } from 'react-icons/fa';
 
 const Navbar = () => {
 
     // nav links 
     const Links = <>
         <li><NavLink to="/">Home</NavLink></li>
-        <li><NavLink to="/about">About Us</NavLink></li>
+        <li><NavLink to="/about_us">About Us</NavLink></li>
         <li><NavLink to="/coverage">Coverage</NavLink></li>
     </>
 
@@ -32,8 +33,11 @@ const Navbar = () => {
                         {Links}
                     </ul>
                 </div>
-                <div className="navbar-end">
-                    <a className="btn btn-primary text-base-100">Button</a>
+                <div className="navbar-end  pr-10 ">
+                    {/* btn  */}
+                    <Link className='btn mr-3 px-5 border-0 rounded-full text-center btn-outline hover:text-primary/50  hover:bg-transparent text-primary outline-primary outline-1 relative'>Sign In</Link>
+                    {/* btn  */}
+                    <Link className='btn px-5 border-0 rounded-lg text-center btn-primary text-secondary relative'>Be a rider <span className=' absolute -right-11 rotate-45 p-3 bg-secondary rounded-full text-primary text-xl'><FaArrowUp /></span></Link>
                 </div>
             </div>
         </div>

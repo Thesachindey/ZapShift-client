@@ -1,7 +1,7 @@
 import React, { use } from 'react';
 import { Autoplay, EffectCoverflow, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import packs from '../../../assets/location-merchant.png';
+import packs from '../../../assets/customer-top.png';
 import ReviewCard from './ReviewCard';
 
 const Reviews = ({ reviewsPromise }) => {
@@ -12,7 +12,7 @@ const Reviews = ({ reviewsPromise }) => {
     return (
         <div className='my-20'>
             <div className='flex flex-col items-center justify-center gap-6 mb-12 mt-6'>
-                <img className='w-80' src={packs} alt="Location Merchant" />
+                <img className='w-60' src={packs} alt="Location Merchant" />
                 <div className='text-center'>
                     <h1 className='text-4xl text-secondary font-bold mb-6'>Our Services</h1>
                     <p className='text-base-200'>

@@ -1,6 +1,6 @@
 import React from 'react';
 import Logo from '../../../components/Logo/Logo';
-import { FaSquareXTwitter, FaXTwitter } from 'react-icons/fa6';
+import { FaLinkedin, FaSquareXTwitter, FaXTwitter } from 'react-icons/fa6';
 
 const Footer = () => {
     return (
@@ -19,6 +19,9 @@ const Footer = () => {
                 <nav>
                 
                     <div className="grid grid-flow-col gap-4">
+                        <a>
+                          <FaLinkedin className='text-blue-500' size={24} />
+                        </a>
                         <a>
                           <FaXTwitter color='white' size={24} />
                         </a>

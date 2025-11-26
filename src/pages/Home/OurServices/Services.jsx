@@ -14,7 +14,7 @@ const Services = () => {
 
     return (
         <div className='py-12'>
-            <div className='bg-secondary     rounded-3xl p-15'>
+            <div className='bg-secondary rounded-3xl p-15'>
                 <div className='text-center '>
                     <h1 className='text-4xl text-base-100 font-bold mb-6'>Our Services</h1>
                     <p className='text-base-300'>Enjoy fast, reliable parcel delivery with <br /> real-time tracking and zero hassle. From personal packages to business shipments — we deliver on time, every time.</p>

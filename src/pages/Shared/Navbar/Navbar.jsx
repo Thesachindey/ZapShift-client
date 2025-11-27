@@ -2,8 +2,24 @@ import React from 'react';
 import Logo from '../../../components/Logo/Logo';
 import { Link, NavLink } from 'react-router';
 import { FaArrowUp } from 'react-icons/fa';
+import useAuth from '../../../Hooks/useAuth';
+import toast from 'react-hot-toast';
 
 const Navbar = () => {
+    const { user, logOut } = useAuth();
+
+    const handelLogout = () => {
+        logOut()
+            .then(() => {
+                toast.success('Logout successfully.');
+            })
+            .catch((error) => {
+                console.log(error.massage);
+                toast.error(error.code);
+            })
+    }
+
+
 
     // nav links 
     const Links = <>
@@ -24,9 +40,18 @@ const Navbar = () => {
                             tabIndex="-1"
                             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
                             {Links}
+                            {/* btn  */}
+                            {
+                                user
+                                    ?
+                                    <button onClick={handelLogout} className='btn mr-3 px-5 border-0 rounded-full text-center btn-outline hover:text-primary/50  hover:bg-transparent hover:shadow-none text-primary outline-primary outline-1 relative  my-2'>Log Out</button>
+                                    :
+                                    <Link to={'/login'} className='btn mr-3 px-5 border-0 rounded-full text-center btn-outline hover:text-primary/50 hover:shadow-none  hover:bg-transparent text-primary outline-primary outline-1 relative  my-2'>Sign In</Link>
+                            }
                         </ul>
                     </div>
-                    <a className="text-xl"><Logo /></a>
+                    {/* logo  */}
+                    <Logo />
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
@@ -35,9 +60,18 @@ const Navbar = () => {
                 </div>
                 <div className="navbar-end  pr-10 ">
                     {/* btn  */}
-                    <Link className='btn mr-3 px-5 border-0 rounded-full text-center btn-outline hover:text-primary/50  hover:bg-transparent text-primary outline-primary outline-1 relative'>Sign In</Link>
+
+                    {
+                        user
+                            ?
+                            <button onClick={handelLogout} className='btn mr-3 px-5 border-0 rounded-full text-center btn-outline hover:text-primary/50  hover:bg-transparent hover:shadow-none text-primary outline-primary outline-1 relative hidden lg:inline-flex'>Log Out</button>
+                            :
+                            <Link to={'/login'} className='btn mr-3 px-5 border-0 rounded-full text-center btn-outline hover:text-primary/50 hover:shadow-none  hover:bg-transparent text-primary outline-primary outline-1 relative hidden lg:inline-flex'>Sign In</Link>
+                    }
+
+
                     {/* btn  */}
-                    <Link className='btn px-5 border-0 rounded-lg text-center btn-primary text-secondary relative'>Be a rider <span className=' absolute -right-11 rotate-45 p-3 bg-secondary rounded-full text-primary text-xl'><FaArrowUp /></span></Link>
+                    <Link to={'/be-a-rider'} className='btn px-5 border-0 rounded-lg text-center btn-primary text-secondary relative'>Be a rider <span className=' absolute -right-11 rotate-45 p-3 bg-secondary rounded-full text-primary text-xl'><FaArrowUp /></span></Link>
                 </div>
             </div>
         </div>

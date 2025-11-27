@@ -47,7 +47,7 @@ const FAQ = () => {
                     }
                 </div>
                 {/* btn  */}
-                <div className="flex justify-center">
+                <div className="flex justify-start md:justify-center ">
                     <Link className='btn px-5 border-0 rounded-lg text-center btn-primary text-secondary relative'>See More FAQ's <span className=' absolute -right-11 rotate-45 p-3 bg-secondary rounded-full text-primary text-xl'><FaArrowUp /></span></Link>
                 </div>
             </div>

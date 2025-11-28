@@ -2,6 +2,8 @@ import React, { useRef } from 'react';
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { useLoaderData } from 'react-router';
+import useAuth from '../../Hooks/useAuth';
+import LoadingPage from '../Shared/Loading/LoadingPage';
 
 
 const Coverage = () => {
@@ -26,7 +28,9 @@ const Coverage = () => {
         }
     }
 
-
+    //loading animation
+    const { loading } = useAuth();
+    if (loading) return <LoadingPage />;
 
     return (
         <div className=''>

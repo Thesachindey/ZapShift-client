@@ -8,21 +8,14 @@ import Reviews from '../Reviews/Reviews';
 import FAQ from '../FAQ/FAQ';
 import BeMerchant from '../BecomeMerchant/BeMerchant';
 import LoadingPage from '../../Shared/Loading/LoadingPage';
+import useAuth from '../../../Hooks/useAuth';
 
 const Home = () => {
     const reviewsPromise = fetch('/reviews.json').then(res => res.json());
 
-    const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-        // Simulate API or Firebase loading
-        setTimeout(() => {
-            setLoading(false);
-        }, 900);
-    }, []);
-    if (loading) {
-        return <LoadingPage />
-    }
+//loading animation
+    const { loading } = useAuth();
+    if (loading) return <LoadingPage />;
 
 
     return (

@@ -1,22 +1,59 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import useAuth from '../../../Hooks/useAuth';
-import { Link } from 'react-router';
+import { Link, useLocation, useNavigate } from 'react-router';
 import toast, { Toaster } from 'react-hot-toast';
 import { FcGoogle } from "react-icons/fc";
 import SocialLogin from '../socialLogin/SocialLogin';
+import axios from 'axios';
 
 const Register = () => {
 
     const { register, handleSubmit, watch, formState: { errors }, } = useForm()
-    const { registerUser } = useAuth()
+    const { registerUser, updateUserProfile } = useAuth()
+    const location = useLocation();
+    const navigate = useNavigate();
+console.log(location)
+
+
 
     const handelRegistration = (data) => {
-        console.log(data)
+        console.log(data.image[0])
+        const profileImg = data.image[0];
+
         registerUser(data.email, data.password)
             .then((res) => {
                 toast.success('Registration successful.')
                 console.log(res)
+
+                // 2. Create FormData for imgBB
+                const formData = new FormData();
+                formData.append("image", profileImg);
+
+                // 3. Upload to imgBB using Axios
+                const image_API_URL = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_image_host_key}`;
+
+                axios.post(image_API_URL, formData)
+                    .then((res) => {
+                        console.log('After img upload', res.data.data.url)
+
+                        //4. update user profile
+                        const userProfile = {
+                            displayName: data.name,
+                            photoURL: res.data.data.url,
+                        }
+                        updateUserProfile(userProfile)
+                            .then(() => {
+                                toast.success('Profile update successfully.');
+                                // navigate 
+                                navigate(location?.state || '/')
+                            })
+                            .catch((error) => {
+                                toast.error(error.code);
+                            })
+
+                    })
+
             })
             .catch((error) => {
                 console.log(error);
@@ -52,7 +89,7 @@ const Register = () => {
                     <input
                         {...register("image", { required: true })}
                         type="file"
-                        
+
                         className="file-input file:bg-primary file:text-white file:border-0"
                     />
 
@@ -81,7 +118,9 @@ const Register = () => {
                     <button className="btn btn-primary text-secondary mt-4">Register</button>
                     <div className="flex justify-between items-center mt-1">
                         <p className="">
-                            Already have an account? <Link to={'/login'} className='text-primary cursor-pointer hover:text-primary/70'>Login</Link>
+                            Already have an account? <Link to={'/login'} 
+                            state={location.state}
+                            className='text-primary cursor-pointer hover:text-primary/70'>Login</Link>
                         </p>
                         <span></span>
                     </div>

@@ -20,7 +20,8 @@ const Banner = () => {
                 <div className='relative'>
                     <img className='absolute top-0 bottom-0 left-0 right-0' src={banner1} />
 
-                    <div className="absolute z-20 top-100 left-60 ">
+                    <div className="absolute z-20
+                      top-100 left-60  hidden xl:block ">
                         {/* btn  */}
                         <Link className='btn mr-3 px-5 border-0 rounded-full text-center btn-outline hover:text-primary  hover:bg-transparent text-secondary outline-secondary outline-1 relative'>Be A Rider</Link>
                         {/* btn  */}

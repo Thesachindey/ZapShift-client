@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import useAuth from '../../../Hooks/useAuth';
 import toast, { Toaster } from 'react-hot-toast';
 import { FcGoogle } from "react-icons/fc";
-import { Link } from 'react-router';
+import { Link, useLocation, useNavigate } from 'react-router';
 import SocialLogin from '../socialLogin/SocialLogin';
 
 
@@ -11,7 +11,9 @@ import SocialLogin from '../socialLogin/SocialLogin';
 const Login = () => {
     const { register, formState: { errors }, handleSubmit, } = useForm()
     const { signInUser } = useAuth();
-
+    const location = useLocation();
+    const navigate = useNavigate();
+console.log(location)
 
     const handelLogin = (data) => {
         console.log(data)
@@ -19,6 +21,7 @@ const Login = () => {
             .then((res) => {
                 console.log(res.user)
                 toast.success('Login success fully')
+                navigate(location?.state || '/')
             })
             .catch((error) => {
                 toast.error(error.code);
@@ -60,7 +63,9 @@ const Login = () => {
                     <button className="btn btn-primary text-secondary mt-4">Login</button>
                     <div className="flex justify-between items-center mt-1">
                         <p className="">
-                            Don’t have any account? <Link to={'/register'} className='text-primary cursor-pointer hover:text-primary/70'>Register</Link>
+                            Don’t have any account? <Link to={'/register'}
+                            state={location.state}
+                            className='text-primary cursor-pointer hover:text-primary/70'>Register</Link>
                         </p>
                         <span></span>
                     </div>

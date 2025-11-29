@@ -57,7 +57,7 @@ export default function AboutUs() {
     };
 
     return (
-        <div className="p-6 lg:p-12 bg-base-100 text-base-content   rounded-xl shadow">
+        <div className="p-6 lg:p-12 bg-base-100 text-base-content   rounded-3xl shadow">
             <h1 className="text-4xl font-bold mb-3">About Us</h1>
             <p className="text-sm mb-8 text-gray-600">
                 Enjoy fast, reliable parcel delivery with real time tracking and zero hassle. From personal <br />

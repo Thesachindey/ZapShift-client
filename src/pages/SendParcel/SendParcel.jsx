@@ -1,9 +1,20 @@
 import React from 'react';
 import { useForm, useWatch } from 'react-hook-form';
 import { useLoaderData } from 'react-router';
+import Swal from 'sweetalert2';
+import useAxiosSecure from '../../Hooks/useAxiosSecure';
+import useAuth from '../../Hooks/useAuth';
 
 const SendParcel = () => {
-    const { register, handleSubmit, control, formState: { errors }, } = useForm();
+    const { register,
+        handleSubmit,
+        control,
+        // formState: { errors }
+    } = useForm();
+    //
+    const axiosSecure = useAxiosSecure();
+    const { user } = useAuth();
+
     const serviceCenters = useLoaderData()
     const regionsMultiple = serviceCenters.map(c => c.region);  // region 
     const regions = [...new Set(regionsMultiple)];//yikhane duplicate item thakte parena
@@ -25,6 +36,14 @@ const SendParcel = () => {
 
     const handelSendParcel = (data) => {
         console.log(data);
+
+        // ⭐ Add custom fields here
+        const finalData = {
+            ...data,
+            createdAt: new Date(),
+            userEmail: user.email,
+       
+        };
 
         const isDocument = data.parcelType === "document";
         const isSameDistrict = data.senderDistrict === data.receiverDistrict;
@@ -49,6 +68,48 @@ const SendParcel = () => {
         }
 
         console.log("cost", cost);
+        // 🎯 SweetAlert2 Confirmation Popup (CUSTOMIZED)
+        Swal.fire({
+            title: "Confirm Parcel Booking",
+            html: `
+            <div style="text-align:left">
+                <p><b>Parcel Type:</b> ${data.parcelType}</p>
+                <p><b>Weight:</b> ${data.parcelWeight} KG</p>
+                <p><b>From:</b> ${data.senderDistrict}</p>
+                <p><b>To:</b> ${data.receiverDistrict}</p>
+                <p><b>Delivery Cost:</b> <span style="color:#3085d6;font-weight:bold">${cost} BDT</span></p>
+            </div>
+        `,
+            icon: "info",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Confirm Booking",
+            cancelButtonText: "Cancel"
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                // TODO: Call API here to create parcel
+                //save the parcel info to the data base
+                axiosSecure.post('/parcels', finalData)
+                    .then((res) => {
+                        console.log('after saving parcels', res.data)
+                    })
+
+
+
+                //sweet alert
+                Swal.fire({
+                    title: "Parcel Booked!",
+                    text: "Your parcel has been successfully scheduled for delivery.",
+                    icon: "success"
+                });
+            }
+        });
+
+
+
+
     };
 
 
@@ -101,10 +162,10 @@ const SendParcel = () => {
                             <fieldset className="fieldset ">
                                 {/* Sender Name  */}
                                 <label className="label mt-2">Sender Name</label>
-                                <input type="text" className="input w-full" {...register('senderName')} placeholder="Sender Name" />
+                                <input defaultValue={user?.displayName} type="text" className="input w-full" {...register('senderName')} placeholder="Sender Name" />
                                 {/* Sender email  */}
                                 <label className="label mt-2">Sender Email</label>
-                                <input type="email" className="input w-full" {...register('senderEmail')} placeholder="Sender Email" />
+                                <input defaultValue={user?.email} type="email" className="input w-full" {...register('senderEmail')} placeholder="Sender Email" />
                                 {/* Sender Address  */}
                                 <label className="label mt-2">Sender Address</label>
                                 <input type="text" className="input w-full" {...register('senderAddress')} placeholder="Sender Address" />

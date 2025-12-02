@@ -15,7 +15,7 @@ const Reviews = ({ reviewsPromise }) => {
                 <img className='w-60' src={packs} alt="Location Merchant" />
                 <div className='text-center'>
                     <h1 className='text-4xl text-secondary font-bold mb-6'>Our Services</h1>
-                    <p className='text-base-200'>
+                    <p className='text-gray-500'>
                         Enjoy fast, reliable parcel delivery with <br />
                         real-time tracking and zero hassle. From personal packages to business shipments — we deliver on time, every time.
                     </p>

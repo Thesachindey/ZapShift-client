@@ -17,7 +17,7 @@ const Services = () => {
             <div className='bg-secondary rounded-3xl p-15'>
                 <div className='text-center '>
                     <h1 className='text-4xl text-base-100 font-bold mb-6'>Our Services</h1>
-                    <p className='text-base-300'>Enjoy fast, reliable parcel delivery with <br /> real-time tracking and zero hassle. From personal packages to business shipments — we deliver on time, every time.</p>
+                    <p className='text-gray-500'>Enjoy fast, reliable parcel delivery with <br /> real-time tracking and zero hassle. From personal packages to business shipments — we deliver on time, every time.</p>
                 </div>
 
                 <div className='grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 gap-8 py-10 '>
@@ -25,7 +25,7 @@ const Services = () => {
                     {
                         data.map(item =>
                             <div
-                                className="w-full h-full cursor-pointer rounded-xl bg-base-100 space-y-3 p-6 flex flex-col items-center justify-center text-center shadow-lg hover:bg-primary transform transition duration-300 hover:scale-105"
+                                className="w-full h-full cursor-pointer rounded-xl bg-base-100 space-y-3 p-6 flex flex-col items-center justify-center text-center shadow-lg hover:bg-primary transform transition duration-300 hover:scale-105 "
                                 key={item.id}
                             >
                                 {/* icon  */}
@@ -40,7 +40,7 @@ const Services = () => {
                                 </div>
 
                                 <h1 className="text-xl mt-4 text-secondary font-bold">{item.title}</h1>
-                                <p className="text-md text-base-200">{item.description}</p>
+                                <p className="text-md text-secondary/40">{item.description}</p>
                             </div>
 
                         )

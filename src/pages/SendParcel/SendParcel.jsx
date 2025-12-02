@@ -37,13 +37,6 @@ const SendParcel = () => {
     const handelSendParcel = (data) => {
         console.log(data);
 
-        // ⭐ Add custom fields here
-        const finalData = {
-            ...data,
-            createdAt: new Date(),
-            userEmail: user.email,
-       
-        };
 
         const isDocument = data.parcelType === "document";
         const isSameDistrict = data.senderDistrict === data.receiverDistrict;
@@ -88,6 +81,15 @@ const SendParcel = () => {
             cancelButtonText: "Cancel"
         }).then((result) => {
             if (result.isConfirmed) {
+
+                // ⭐ Add custom fields here
+                const finalData = {
+                    ...data,
+                    createdAt: new Date(),
+                    userEmail: user.email,
+                    cost: cost,
+
+                };
 
                 // TODO: Call API here to create parcel
                 //save the parcel info to the data base

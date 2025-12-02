@@ -22,7 +22,7 @@ const HowItWorks = () => {
                     <div className="w-full h-full  cursor-pointer rounded-xl bg-base-100 space-y-3 p-6 text-start shadow-lg hover:shadow-xl hover:scale-105 transition duration-300 " key={item.id}>
                         <span className=' text-secondary text-3xl '>{item.icon}</span>
                         <h1 className='text-xl mt-4 text-secondary font-bold'>{item.title}</h1>
-                        <p className='text-md text-base-200 '>{item.description}</p>
+                        <p className='text-md text-gray-500 '>{item.description}</p>
                     </div>
                 )
             }

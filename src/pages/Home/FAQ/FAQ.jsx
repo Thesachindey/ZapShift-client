@@ -31,7 +31,7 @@ const FAQ = () => {
             <div className=" ">
                 <div className='text-center'>
                     <h1 className='text-4xl text-secondary font-bold mb-6'>Frequently Asked Question (FAQ)</h1>
-                    <p className='text-base-200'>
+                    <p className='text-gray-500'>
                         Enhance posture, mobility, and well-being effortlessly with Posture Pro. Achieve proper alignment, reduce <br /> pain, and strengthen your body with ease!
                     </p>
                 </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useForm, useWatch } from 'react-hook-form';
-import { useLoaderData } from 'react-router';
+import { useLoaderData, useNavigate } from 'react-router';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import useAuth from '../../Hooks/useAuth';
@@ -14,6 +14,7 @@ const SendParcel = () => {
     //
     const axiosSecure = useAxiosSecure();
     const { user } = useAuth();
+    const navigate = useNavigate();
 
     const serviceCenters = useLoaderData()
     const regionsMultiple = serviceCenters.map(c => c.region);  // region 
@@ -96,16 +97,18 @@ const SendParcel = () => {
                 axiosSecure.post('/parcels', finalData)
                     .then((res) => {
                         console.log('after saving parcels', res.data)
+                        navigate('/dashboard/my-parcels')
+                        //sweet alert
+                        Swal.fire({
+                            title: "Parcel Booked!",
+                            text: "Your parcel has been successfully scheduled for delivery.",
+                            icon: "success"
+                        });
                     })
 
 
 
-                //sweet alert
-                Swal.fire({
-                    title: "Parcel Booked!",
-                    text: "Your parcel has been successfully scheduled for delivery.",
-                    icon: "success"
-                });
+
             }
         });
 

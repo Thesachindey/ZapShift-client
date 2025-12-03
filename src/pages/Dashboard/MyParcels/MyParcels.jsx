@@ -101,11 +101,11 @@ const MyParcels = () => {
                                         }
                                     </td>
                                     <td>{p.deliveryStatus}</td>
-                                    <td className=''>
+                                    <td className='flex flex-wrap gap-2'>
                                         <button className='btn btn-square hover:bg-primary'>
                                             <FaMagnifyingGlass />
                                         </button>
-                                        <button className='btn btn-square hover:bg-primary mx-2'>
+                                        <button className='btn btn-square hover:bg-primary '>
                                             <FaRegEdit />
                                         </button>
                                         <button

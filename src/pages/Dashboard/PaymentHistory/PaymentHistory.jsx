@@ -2,6 +2,7 @@ import React from 'react';
 import useAuth from '../../../Hooks/useAuth';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
+import moment from 'moment/moment';
 
 const PaymentHistory = () => {
     const { user } = useAuth();
@@ -26,6 +27,7 @@ const PaymentHistory = () => {
                             <th></th>
                             <th>Name</th>
                             <th>Amount</th>
+                            <th>Time</th>
                             <th>Transaction Id</th>
                         </tr>
                     </thead>
@@ -37,6 +39,7 @@ const PaymentHistory = () => {
                                     <th>{i+1}</th>
                                     <td>{payment.parcelName}</td>
                                     <td>$ {payment.amount}</td>
+                                    <td>{moment(payment.paidAt).format("DD MMM YYYY, h:mm A")}</td>
                                     <td>{payment.transactionId}</td>
                                 </tr>,
                                 console.log(payments)

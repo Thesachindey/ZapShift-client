@@ -41,6 +41,7 @@ export const router = createBrowserRouter([
                     <PrivateRoute>
                         <BeARider />
                     </PrivateRoute>,
+                loader: () => fetch('/serviceCenters.json').then(res => res.json())
             },
             {
                 path: '/send_parcel',
@@ -64,11 +65,13 @@ export const router = createBrowserRouter([
             {
                 path: 'login',
                 Component: Login,
-            },
+            }
+            ,
             {
                 path: 'register',
                 Component: Register,
             }
+
         ]
     },
     {

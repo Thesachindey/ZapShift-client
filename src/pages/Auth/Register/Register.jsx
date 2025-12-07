@@ -6,6 +6,7 @@ import toast, { Toaster } from 'react-hot-toast';
 import { FcGoogle } from "react-icons/fc";
 import SocialLogin from '../socialLogin/SocialLogin';
 import axios from 'axios';
+import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 
 const Register = () => {
 
@@ -13,7 +14,7 @@ const Register = () => {
     const { registerUser, updateUserProfile } = useAuth()
     const location = useLocation();
     const navigate = useNavigate();
-console.log(location)
+    const axiosSecure = useAxiosSecure();
 
 
 
@@ -35,12 +36,25 @@ console.log(location)
 
                 axios.post(image_API_URL, formData)
                     .then((res) => {
-                        console.log('After img upload', res.data.data.url)
+                        const photoURL = res.data.data.url;
 
-                        //4. update user profile
+                        //create user in database
+                        const userInfo = {
+                            email: data.email,
+                            displayName: data.name,
+                            photoURL: photoURL
+                        }
+                        axiosSecure.post('/users',userInfo)
+                        .then((res)=>{
+                           if(res.data.insertedId){
+                            console.log('User created in the database')
+                           }
+                        })//users collection
+
+                        //4. update user profile on firebase
                         const userProfile = {
                             displayName: data.name,
-                            photoURL: res.data.data.url,
+                            photoURL: photoUrl,
                         }
                         updateUserProfile(userProfile)
                             .then(() => {
@@ -118,9 +132,9 @@ console.log(location)
                     <button className="btn btn-primary text-secondary mt-4">Register</button>
                     <div className="flex justify-between items-center mt-1">
                         <p className="">
-                            Already have an account? <Link to={'/login'} 
-                            state={location.state}
-                            className='text-primary cursor-pointer hover:text-primary/70'>Login</Link>
+                            Already have an account? <Link to={'/login'}
+                                state={location.state}
+                                className='text-primary cursor-pointer hover:text-primary/70'>Login</Link>
                         </p>
                         <span></span>
                     </div>

@@ -38,10 +38,12 @@ const BeARider = () => {
             .then((res) => {
                 if (res.data.insertedId) {
                     Swal.fire({
-                        title: "Parcel Booked!",
-                        text: "Your parcel has been successfully scheduled for delivery.",
+                        title: "Request to be a rider!",
+                        text: "Your request has been successfully send for approved.",
                         icon: "success"
                     });
+                    // navigate('/dashboard/approve-riders')
+                    
                 }
             })
     }

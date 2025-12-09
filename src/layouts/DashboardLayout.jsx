@@ -2,8 +2,8 @@ import React from 'react';
 import { Link, NavLink, Outlet } from 'react-router';
 import Logo from '../components/Logo/Logo';
 import logoImg from '../assets/logo.png'
-import { FaBoxOpen, FaRegCreditCard } from 'react-icons/fa6';
-
+import { FaBoxOpen, FaRegCreditCard, FaUsers } from 'react-icons/fa6';
+import { RiEBike2Line } from "react-icons/ri";
 const DashboardLayout = () => {
     return (
         <div >
@@ -65,6 +65,28 @@ const DashboardLayout = () => {
                                         </span>
 
                                         <span className="is-drawer-close:hidden">Payment History</span>
+                                    </NavLink>
+                                </li>
+                                {/* Approve Riders */}
+                                <li>
+                                    <NavLink to={'/dashboard/approve-riders'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Approve Riders">
+                                        {/* my-parcels icon */}
+                                        <span className="my-1.5 inline-block size-3">
+                                            <RiEBike2Line />
+                                        </span>
+
+                                        <span className="is-drawer-close:hidden">Approve Riders</span>
+                                    </NavLink>
+                                </li>
+                                {/* Users management */}
+                                <li>
+                                    <NavLink to={'/dashboard/users-management'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Users management">
+                                        {/* my-parcels icon */}
+                                        <span className="my-1.5 inline-block size-3">
+                                            <FaUsers />
+                                        </span>
+
+                                        <span className="is-drawer-close:hidden">Users management</span>
                                     </NavLink>
                                 </li>
                                 {/* List item */}

@@ -13,33 +13,32 @@ const SocialLogin = () => {
     const axiosSecure = useAxiosSecure();
 
 
-    const handelGoogleSignIn = () => {
-        signInGoogle()
-            .then((res) => {
-                console.log(res.user);
-                toast.success("Sign In with google successfully. ");
+   const handelGoogleSignIn = () => {
+    signInGoogle()
+        .then((res) => {
+            console.log(res.user);
+            toast.success("Sign In with Google successfully.");
 
+            const userInfo = {
+                email: res.user.email,
+                displayName: res.user.displayName,   // FIXED
+                photoURL: res.user.photoURL          // FIXED spelling
+            }
 
-                const userInfo = {
-                    email: res.user.email,
-                    displayName: res.user.name,
-                    photoURl: res.user.photoURL
-                }
+            // create user in database
+            axiosSecure.post('/users', userInfo)
+                .then((res) => {
+                    console.log('User data stored', res.data);
 
-                //create user in data base
-                axiosSecure.post('/users', userInfo)
-                    .then((res) => {
-                        console.log('user data has been stored ', res.data)
-                        // navigate 
-                        navigate(location?.state || '/')
-                    })
-
-            })
-            .catch((error) => {
-                console.log(error.code)
-                toast.error(error.code);
-            })
-    }
+                    // navigate
+                    navigate(location?.state || '/');
+                });
+        })
+        .catch((error) => {
+            console.log(error.code);
+            toast.error(error.code);
+        });
+};
 
     return (
         <div >

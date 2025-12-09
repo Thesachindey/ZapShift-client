@@ -4,7 +4,11 @@ import Logo from '../components/Logo/Logo';
 import logoImg from '../assets/logo.png'
 import { FaBoxOpen, FaRegCreditCard, FaUsers } from 'react-icons/fa6';
 import { RiEBike2Line } from "react-icons/ri";
+import useRole from '../Hooks/useRole';
 const DashboardLayout = () => {
+
+    const { role } = useRole();
+
     return (
         <div >
             <div className="drawer lg:drawer-open max-w-7xl mx-auto">
@@ -23,84 +27,90 @@ const DashboardLayout = () => {
                     {/* Page content here */}
                     <div className="min-h-screen">
                         <Outlet></Outlet>
-                        
+
                     </div>
                 </div>
-                
-                    <div className="drawer-side pl-2 py-2  is-drawer-close:overflow-visible">
-                        <label htmlFor="my-drawer-4" aria-label="close sidebar" className="drawer-overlay"></label>
-                        <div className="flex min-h-full flex-col items-start rounded-2xl bg-base-100 shadow is-drawer-close:w-14 is-drawer-open:w-64">
-                            {/* Sidebar content here */}
-                            <ul className="menu w-full grow">
-                                {/* List item */}
-                                <li>
-                                    <button to={'/'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right " data-tip="Homepage">
-                                        {/* Home icon */}
-                                        <span className="my-1.5 inline-block size-4 is-drawer-open:hidden">
-                                            <Link to={'/'}><img src={logoImg} alt="logo-img" /></Link>   
-                                        </span>
-                                        <span className="is-drawer-close:hidden"><Logo /></span>
-                                    </button>
-                                </li>
 
-                                
-                                {/* List item -my parcels */}
-                                <li>
-                                    <NavLink to={'/dashboard/my-parcels'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="My Parcels">
-                                        {/* my-parcels icon */}
-                                        <span className="my-1.5 inline-block size-3">
-                                            <FaBoxOpen />
-                                        </span>
+                <div className="drawer-side pl-2 py-2  is-drawer-close:overflow-visible">
+                    <label htmlFor="my-drawer-4" aria-label="close sidebar" className="drawer-overlay"></label>
+                    <div className="flex min-h-full flex-col items-start rounded-2xl bg-base-100 shadow is-drawer-close:w-14 is-drawer-open:w-64">
+                        {/* Sidebar content here */}
+                        <ul className="menu w-full grow">
+                            {/* List item */}
+                            <li>
+                                <button to={'/'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right " data-tip="Homepage">
+                                    {/* Home icon */}
+                                    <span className="my-1.5 inline-block size-4 is-drawer-open:hidden">
+                                        <Link to={'/'}><img src={logoImg} alt="logo-img" /></Link>
+                                    </span>
+                                    <span className="is-drawer-close:hidden"><Logo /></span>
+                                </button>
+                            </li>
 
-                                        <span className="is-drawer-close:hidden">My Parcels</span>
-                                    </NavLink>
-                                </li>
-                                
-                                {/* List item -payment history */}
-                                <li>
-                                    <NavLink to={'/dashboard/payment-history'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Payment History">
-                                        {/* my-parcels icon */}
-                                        <span className="my-1.5 inline-block size-3">
-                                            <FaRegCreditCard />
-                                        </span>
 
-                                        <span className="is-drawer-close:hidden">Payment History</span>
-                                    </NavLink>
-                                </li>
-                                {/* Approve Riders */}
-                                <li>
-                                    <NavLink to={'/dashboard/approve-riders'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Approve Riders">
-                                        {/* my-parcels icon */}
-                                        <span className="my-1.5 inline-block size-3">
-                                            <RiEBike2Line />
-                                        </span>
+                            {/* List item -my parcels */}
+                            <li>
+                                <NavLink to={'/dashboard/my-parcels'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="My Parcels">
+                                    {/* my-parcels icon */}
+                                    <span className="my-1.5 inline-block size-3">
+                                        <FaBoxOpen />
+                                    </span>
 
-                                        <span className="is-drawer-close:hidden">Approve Riders</span>
-                                    </NavLink>
-                                </li>
-                                {/* Users management */}
-                                <li>
-                                    <NavLink to={'/dashboard/users-management'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Users management">
-                                        {/* my-parcels icon */}
-                                        <span className="my-1.5 inline-block size-3">
-                                            <FaUsers />
-                                        </span>
+                                    <span className="is-drawer-close:hidden">My Parcels</span>
+                                </NavLink>
+                            </li>
 
-                                        <span className="is-drawer-close:hidden">Users management</span>
-                                    </NavLink>
-                                </li>
-                                {/* List item */}
-                                <li>
-                                    <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Settings">
-                                        {/* Settings icon */}
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor" className="my-1.5 inline-block size-4"><path d="M20 7h-9"></path><path d="M14 17H5"></path><circle cx="17" cy="17" r="3"></circle><circle cx="7" cy="7" r="3"></circle></svg>
-                                        <span className="is-drawer-close:hidden">Settings</span>
-                                    </button>
-                                </li>
-                            </ul>
-                        </div>
+                            {/* List item -payment history */}
+                            <li>
+                                <NavLink to={'/dashboard/payment-history'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Payment History">
+                                    {/* my-parcels icon */}
+                                    <span className="my-1.5 inline-block size-3">
+                                        <FaRegCreditCard />
+                                    </span>
+
+                                    <span className="is-drawer-close:hidden">Payment History</span>
+                                </NavLink>
+                            </li>
+                            {/* Approve Riders */}
+                            {/* Users management */}
+                            {
+                                role === 'admin' &&
+                                <>
+                                    <li>
+                                        <NavLink to={'/dashboard/approve-riders'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Approve Riders">
+                                            {/* my-parcels icon */}
+                                            <span className="my-1.5 inline-block size-3">
+                                                <RiEBike2Line />
+                                            </span>
+
+                                            <span className="is-drawer-close:hidden">Approve Riders</span>
+                                        </NavLink>
+                                    </li>
+
+                                    <li>
+                                        <NavLink to={'/dashboard/users-management'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Users management">
+                                            {/* my-parcels icon */}
+                                            <span className="my-1.5 inline-block size-3">
+                                                <FaUsers />
+                                            </span>
+
+                                            <span className="is-drawer-close:hidden">Users management</span>
+                                        </NavLink>
+                                    </li>
+                                </>
+                            }
+                            {/* List item */}
+                            <li>
+                                <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Settings">
+                                    {/* Settings icon */}
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor" className="my-1.5 inline-block size-4"><path d="M20 7h-9"></path><path d="M14 17H5"></path><circle cx="17" cy="17" r="3"></circle><circle cx="7" cy="7" r="3"></circle></svg>
+                                    <span className="is-drawer-close:hidden">Settings</span>
+                                </button>
+                            </li>
+                        </ul>
                     </div>
-               
+                </div>
+
             </div>
         </div>
     );
